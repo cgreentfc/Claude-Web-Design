@@ -1,0 +1,56 @@
+<!-- Row 2 of 5 — drop as a Custom HTML element in a full-width row.
+     Contains the hero copy AND the opt-in form as one block; the
+     two-column layout is CSS grid inside this single fragment, so it
+     does not need to map to separate GHL columns. -->
+<div class="fsp-page">
+<header class="hero">
+  <!-- REPLACE: photo placeholder — see comment in head-code.html's .hero block -->
+  <span class="photo-tag">Placeholder — swap hero photo</span>
+  <svg class="hero-art" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" fill="none" aria-hidden="true">
+    <path d="M100 400V240l180-120 180 120v160" stroke="#FAF6EE" stroke-width="3"/>
+    <path d="M740 400V220l210-140 210 140v180" stroke="#FAF6EE" stroke-width="3"/>
+    <path d="M0 400h1200" stroke="#FAF6EE" stroke-width="3"/>
+    <path d="M330 400v-90h60v90" stroke="#FAF6EE" stroke-width="3"/>
+  </svg>
+
+  <div class="hero-inner">
+    <div>
+      <p class="eyebrow">For fathers building first-generation wealth</p>
+      <h1 class="hero-headline">The first generation to own the house <em>shouldn&rsquo;t be the last.</em></h1>
+      <p class="hero-sub">Free 10-minute breakdown: what your work policy <strong>actually pays</strong>, how long your family could keep the house on it &mdash; and how fathers earning $60K+ lock the mortgage for about the cost of a dinner out.</p>
+      <div class="proofline">
+        <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7.5 5.5 11 12 3" stroke="#C9A227" stroke-width="2.2" stroke-linecap="round"/></svg>No-exam options</span>
+        <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7.5 5.5 11 12 3" stroke="#C9A227" stroke-width="2.2" stroke-linecap="round"/></svg>Transparent pricing</span>
+        <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7.5 5.5 11 12 3" stroke="#C9A227" stroke-width="2.2" stroke-linecap="round"/></svg>Takes 15 minutes</span>
+      </div>
+    </div>
+
+    <!-- REPLACE: point this form's action at your GHL inbound webhook URL
+         once you have it. Field names (full_name, email, phone, consent)
+         are kept plain so they map cleanly to whatever the webhook expects;
+         tell me the endpoint + expected field names and I'll wire it. -->
+    <form class="form-card" id="optin" method="post" action="#">
+      <h2>Watch the free breakdown now</h2>
+      <p class="lede">Instant access &mdash; see the exact gap in your current coverage before your next birthday reprices it.</p>
+      <div class="field">
+        <label for="full_name">Full name</label>
+        <input type="text" id="full_name" name="full_name" autocomplete="name" placeholder="Eric Johnson" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com" required>
+      </div>
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(555) 555-0199" required>
+      </div>
+      <button class="btn" type="submit">Show Me the Gap &rarr;</button>
+      <div class="consent">
+        <input type="checkbox" id="consent" name="consent" required>
+        <label for="consent">I agree to receive calls and text messages about my coverage request at the number provided (msg &amp; data rates may apply, reply STOP to opt out). Consent is not a condition of purchase. <a href="#privacy" style="color:inherit">Privacy Policy</a></label>
+      </div>
+      <p class="lock-note"><svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true"><rect x="1" y="6" width="10" height="7" rx="1.5" stroke="#57574F" stroke-width="1.5"/><path d="M3.5 6V4.2A2.5 2.5 0 0 1 6 1.7a2.5 2.5 0 0 1 2.5 2.5V6" stroke="#57574F" stroke-width="1.5"/></svg>Your information is never sold or shared.</p>
+    </form>
+  </div>
+</header>
+</div>

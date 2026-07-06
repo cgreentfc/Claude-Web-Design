@@ -16,6 +16,10 @@ GoHighLevel (GHL).
 
 ## Changelog
 
+- **GHL export** — `01-optin/ghl-export/` packages the page into what GHL's
+  Funnels builder needs (a head-code CSS/fonts snippet + one Custom HTML
+  fragment per row). See `01-optin/ghl-export/GHL-IMPORT.md` for exact
+  paste-in steps.
 - **Copy v2** — Rewrote "The Coverage Illusion" section (heading, subhead,
   the two coverage-gap stat cards, closing line, CTA) per the Forbidden
   Persuasion framework in the repo's `CLAUDE.md`. Header, hero, opt-in form,
