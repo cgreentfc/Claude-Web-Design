@@ -8,11 +8,19 @@ GoHighLevel (GHL).
 
 | Step | Page | Status | Job |
 |------|------|--------|-----|
-| 1 | `01-optin/` — Opt-in | **Built (design v1)** | Capture name/email/phone; install Beliefs 1–3 (stakes → gap → absolution) |
+| 1 | `01-optin/` — Opt-in | **Built (design v1, copy v2)** | Capture name/email/phone; install Beliefs 1–3 (stakes → gap → absolution) |
 | 2 | `02-vsl/` — Video page | Not started | The 10-min breakdown; installs Beliefs 4–6 (possibility → vehicle → urgency) |
 | 3 | `03-quiz/` — Questionnaire | Not started | "How exposed is your family?" qualification + call pre-frame data |
 | 4 | `04-scheduler/` — Booking | Not started | Book the Conviction Call (GHL calendar) |
 | 5 | `05-confirmation/` — Confirmation | Not started | Lock the appointment, pre-frame the call, reduce no-shows |
+
+## Changelog
+
+- **Copy v2** — Rewrote "The Coverage Illusion" section (heading, subhead,
+  the two coverage-gap stat cards, closing line, CTA) per the Forbidden
+  Persuasion framework in the repo's `CLAUDE.md`. Header, hero, opt-in form,
+  agent trust bar, and footer/legal are unchanged from v1. First stat card
+  (56% ownership) got a light "You" framing addition only.
 
 ## Design system ("Heritage")
 
