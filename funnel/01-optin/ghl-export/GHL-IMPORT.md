@@ -59,12 +59,13 @@ client-side validation for the webhook, that's the place it would go.
 
 ## 5. Placeholders to replace before publishing
 
-Same four placeholders as the source page (search `REPLACE` in any file
-here):
-1. **Hero photo** (`section-2-hero.html` / `.hero` background in
-   `head-code.html`) — licensed photo of a Black father with his kid(s) at
-   their home; warm/proud, daylight, not somber. Apply the scrim noted in
-   the CSS comment.
+Search `REPLACE` in any file here:
+1. **Hero photo URL** (`head-code.html`, `.hero` background) — upload the
+   backyard-cookout hero photo to GHL's media library and swap the
+   `url("REPLACE-WITH-GHL-HOSTED-HERO-PHOTO-URL")` placeholder for the
+   hosted URL it gives you. The flat 70%-opacity dark-green scrim
+   (`rgba(11,33,26,.7)`) already in that rule keeps the headline/subhead
+   readable over it — no further adjustment needed.
 2. **Agent headshot + FL license number** (`section-3-trustbar.html`).
 3. **Carrier logos** (`section-3-trustbar.html`).
 4. **Footer legal entity name + real links** (`section-5-footer.html`).

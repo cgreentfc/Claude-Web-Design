@@ -46,16 +46,12 @@
   .fsp-page .wordmark b{color:var(--gold-500)}
 
   /* ---------- hero ---------- */
+  /* Hero photo: family backyard cookout at golden hour, hosted from GHL's
+     media library — replace the url() below with that hosted URL on import. */
   .fsp-page .hero{position:relative;background:
-    radial-gradient(1100px 520px at 78% 12%, rgba(201,162,39,.14), transparent 60%),
-    linear-gradient(168deg, #123528 0%, var(--green-900) 46%, var(--green-950) 100%);
+    linear-gradient(rgba(11,33,26,.7), rgba(11,33,26,.7)),
+    url("REPLACE-WITH-GHL-HOSTED-HERO-PHOTO-URL") center 32%/cover no-repeat;
     color:var(--cream);overflow:hidden}
-  /* REPLACE: hero photo. Swap the gradient above for a licensed photo of a
-     Black father with his kids in front of / inside their home (proud, warm,
-     daylight). Apply scrim: linear-gradient(rgba(11,33,26,.72), rgba(11,33,26,.88))
-     over the image so text passes contrast. */
-  .fsp-page .hero-art{position:absolute;inset:auto 0 0 0;height:66%;opacity:.10;pointer-events:none}
-  .fsp-page .photo-tag{position:absolute;top:14px;right:14px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-950);background:var(--gold-500);padding:5px 10px;border-radius:999px;opacity:.92}
   .fsp-page .hero-inner{position:relative;max-width:1120px;margin:0 auto;padding:64px 24px 80px;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
   .fsp-page .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-500);margin-bottom:22px}
   .fsp-page .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold-500)}

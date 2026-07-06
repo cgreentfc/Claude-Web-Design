@@ -24,9 +24,15 @@
     "You're one signature away from leaving a paid-off house
      instead of a funeral bill."
 
+  HERO PHOTO: assets/hero-photo.jpg — family backyard cookout at golden
+    hour (dad grilling, mom, two kids, dog, string lights, house behind).
+    Displayed under a flat 70%-opacity dark-green scrim
+    (rgba(11,33,26,.7)) so the headline/subhead/proofline read clearly;
+    the form card sits on its own solid cream background regardless.
+
   PLACEHOLDERS TO REPLACE BEFORE PUBLISHING (search "REPLACE"):
-    1. Hero photo         2. Agent headshot + license number
-    3. Carrier logos      4. Contact info / legal links
+    1. Agent headshot + license number
+    2. Carrier logos      3. Contact info / legal links
   ============================================================
 -->
 <html lang="en">
@@ -67,15 +73,9 @@
 
   /* ---------- hero ---------- */
   .hero{position:relative;background:
-    radial-gradient(1100px 520px at 78% 12%, rgba(201,162,39,.14), transparent 60%),
-    linear-gradient(168deg, #123528 0%, var(--green-900) 46%, var(--green-950) 100%);
+    linear-gradient(rgba(11,33,26,.7), rgba(11,33,26,.7)),
+    url("assets/hero-photo.jpg") center 32%/cover no-repeat;
     color:var(--cream);overflow:hidden}
-  /* REPLACE: hero photo. Swap the gradient above for a licensed photo of a
-     Black father with his kids in front of / inside their home (proud, warm,
-     daylight). Apply scrim: linear-gradient(rgba(11,33,26,.72), rgba(11,33,26,.88))
-     over the image so text passes contrast. */
-  .hero-art{position:absolute;inset:auto 0 0 0;height:66%;opacity:.10;pointer-events:none}
-  .photo-tag{position:absolute;top:14px;right:14px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-950);background:var(--gold-500);padding:5px 10px;border-radius:999px;opacity:.92}
   .hero-inner{position:relative;max-width:1120px;margin:0 auto;padding:64px 24px 80px;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-500);margin-bottom:22px}
   .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold-500)}
@@ -173,15 +173,6 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero">
-  <!-- REPLACE: photo placeholder — see comment in CSS .hero block -->
-  <span class="photo-tag">Placeholder — swap hero photo</span>
-  <svg class="hero-art" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" fill="none" aria-hidden="true">
-    <path d="M100 400V240l180-120 180 120v160" stroke="#FAF6EE" stroke-width="3"/>
-    <path d="M740 400V220l210-140 210 140v180" stroke="#FAF6EE" stroke-width="3"/>
-    <path d="M0 400h1200" stroke="#FAF6EE" stroke-width="3"/>
-    <path d="M330 400v-90h60v90" stroke="#FAF6EE" stroke-width="3"/>
-  </svg>
-
   <div class="hero-inner">
     <div>
       <p class="eyebrow">For fathers building first-generation wealth</p>
