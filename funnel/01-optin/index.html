@@ -24,15 +24,10 @@
     "You're one signature away from leaving a paid-off house
      instead of a funeral bill."
 
-  HERO PHOTO: assets/hero-photo.jpg — family backyard cookout at golden
-    hour (dad grilling, mom, two kids, dog, string lights, house behind).
-    Displayed under a flat 70%-opacity dark-green scrim
-    (rgba(11,33,26,.7)) so the headline/subhead/proofline read clearly;
-    the form card sits on its own solid cream background regardless.
+  HERO: running as a flat green gradient for this test campaign (no photo).
 
   PLACEHOLDERS TO REPLACE BEFORE PUBLISHING (search "REPLACE"):
-    1. Agent headshot + license number
-    2. Carrier logos      3. Contact info / legal links
+    1. Agent headshot      2. Contact info / legal links
   ============================================================
 -->
 <html lang="en">
@@ -73,8 +68,8 @@
 
   /* ---------- hero ---------- */
   .hero{position:relative;background:
-    linear-gradient(rgba(11,33,26,.7), rgba(11,33,26,.7)),
-    url("assets/hero-photo.jpg") center 32%/cover no-repeat;
+    radial-gradient(1100px 520px at 78% 12%, rgba(201,162,39,.14), transparent 60%),
+    linear-gradient(168deg, #123528 0%, var(--green-900) 46%, var(--green-950) 100%);
     color:var(--cream);overflow:hidden}
   .hero-inner{position:relative;max-width:1120px;margin:0 auto;padding:64px 24px 80px;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-500);margin-bottom:22px}
@@ -111,10 +106,6 @@
   /* REPLACE: .agent-photo with real headshot <img>, keep 56px circle + gold ring */
   .agent-name{font-weight:700;font-size:15px}
   .agent-cred{font-size:13px;color:var(--ink-soft)}
-  .carriers{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-left:auto}
-  .carriers-label{font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
-  .carrier-chip{font-size:12.5px;font-weight:600;color:var(--green-700);border:1.5px dashed #C4BA9F;border-radius:8px;padding:7px 12px;background:#fff}
-  /* REPLACE: .carrier-chip elements with actual carrier logo imgs (~28px tall, grayscale) */
 
   /* ---------- belief section ---------- */
   .belief{background:var(--cream-2);padding:84px 24px}
@@ -151,7 +142,6 @@
     .proofline{justify-content:center}
     .form-card{max-width:480px;margin:0 auto;width:100%;text-align:left}
     .trustbar-inner{justify-content:center;text-align:center}
-    .carriers{margin-left:0;justify-content:center}
     .stats{grid-template-columns:1fr}
     .belief{padding:56px 20px}
   }
@@ -207,7 +197,7 @@
       <button class="btn" type="submit">Show Me the Gap &rarr;</button>
       <div class="consent">
         <input type="checkbox" id="consent" name="consent" required>
-        <label for="consent">I agree to receive calls and text messages about my coverage request at the number provided (msg &amp; data rates may apply, reply STOP to opt out). Consent is not a condition of purchase. <a href="#privacy" style="color:inherit">Privacy Policy</a></label>
+        <label for="consent">I agree to receive calls and text messages about my coverage request at the number provided (msg &amp; data rates may apply, reply STOP to opt out). Consent is not a condition of purchase. <a href="privacy-policy.html" style="color:inherit">Privacy Policy</a></label>
       </div>
       <p class="lock-note"><svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true"><rect x="1" y="6" width="10" height="7" rx="1.5" stroke="#57574F" stroke-width="1.5"/><path d="M3.5 6V4.2A2.5 2.5 0 0 1 6 1.7a2.5 2.5 0 0 1 2.5 2.5V6" stroke="#57574F" stroke-width="1.5"/></svg>Your information is never sold or shared.</p>
     </form>
@@ -222,17 +212,8 @@
       <div class="agent-photo" aria-hidden="true">CG</div>
       <div>
         <div class="agent-name">C. Green</div>
-        <!-- REPLACE: license number -->
-        <div class="agent-cred">Licensed Life Insurance Agent &middot; FL Lic. #XXXXXXX</div>
+        <div class="agent-cred">Licensed Life Insurance Agent &middot; FL Lic. #G097732</div>
       </div>
-    </div>
-    <div class="carriers">
-      <span class="carriers-label">Policies placed with A-rated carriers</span>
-      <!-- REPLACE: actual carrier logos -->
-      <span class="carrier-chip">Carrier logo</span>
-      <span class="carrier-chip">Carrier logo</span>
-      <span class="carrier-chip">Carrier logo</span>
-      <span class="carrier-chip">Carrier logo</span>
     </div>
   </div>
 </section>
@@ -280,16 +261,15 @@
         <span>The <b>Family Shield</b> Plan</span>
       </a>
       <div class="footer-links">
-        <!-- REPLACE: real links + contact -->
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
         <a href="mailto:cgreen.flinsurance@gmail.com">Contact</a>
       </div>
     </div>
     <div class="footer-legal">
       <p>The Family Shield Plan offers term life insurance placed through licensed agents with A-rated insurance carriers. Product availability, rates, and underwriting requirements vary by state, age, health class, and carrier. Nothing on this page is a guarantee of coverage or a quote; final pricing is determined by the issuing carrier upon application. No-exam options are subject to carrier eligibility.</p>
       <p>Ownership statistic: LIMRA Insurance Barometer Study. Coverage-amount comparison: industry survey data; figures are directional. Needs estimates use the DIME (Debt, Income, Mortgage, Education) method and are illustrative, not personalized advice.</p>
-      <p>&copy; 2026 The Family Shield Plan. All rights reserved. <!-- REPLACE: legal entity name --></p>
+      <p>&copy; 2026 Security First Advisors LLC. All rights reserved.</p>
     </div>
   </div>
 </footer>

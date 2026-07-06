@@ -51,24 +51,35 @@ endpoint and whatever field names it expects and this gets wired precisely.
 ## 4. No JavaScript is needed
 
 This page has no interactive behavior beyond anchor scrolling (the belief
-section's CTA jumps to `#optin`; the consent checkbox's Privacy Policy link
-jumps to `#privacy` in the footer) — both handled by the `scroll-behavior:
-smooth` rule already in `head-code.html`. There's nothing to add to a
-Tracking Code (Footer)/JS field for this page as built. If you later add
-client-side validation for the webhook, that's the place it would go.
+section's CTA jumps to `#optin`) — handled by the `scroll-behavior: smooth`
+rule already in `head-code.html`. There's nothing to add to a Tracking Code
+(Footer)/JS field for this page as built. If you later add client-side
+validation for the webhook, that's the place it would go.
 
-## 5. Placeholders to replace before publishing
+## 5. Publish the Privacy Policy and Terms of Use as two more GHL pages
 
-Search `REPLACE` in any file here:
-1. **Hero photo URL** (`head-code.html`, `.hero` background) — upload the
-   backyard-cookout hero photo to GHL's media library and swap the
-   `url("REPLACE-WITH-GHL-HOSTED-HERO-PHOTO-URL")` placeholder for the
-   hosted URL it gives you. The flat 70%-opacity dark-green scrim
-   (`rgba(11,33,26,.7)`) already in that rule keeps the headline/subhead
-   readable over it — no further adjustment needed.
-2. **Agent headshot + FL license number** (`section-3-trustbar.html`).
-3. **Carrier logos** (`section-3-trustbar.html`).
-4. **Footer legal entity name + real links** (`section-5-footer.html`).
+`../privacy-policy.html` and `../terms-of-use.html` are generic legal-page
+templates (same look and feel as the opt-in page). **These are boilerplate,
+not attorney-reviewed** — insurance advertising is state-regulated, so have
+compliance/legal review them before running paid traffic, and fill in the
+`[DATE — set on publish]` placeholder in each.
+
+Each is a full standalone page (its own `<head>`/`<style>`, no `.fsp-page`
+scoping needed) — publish each as its own funnel step/page in GHL, then
+update the two links in `section-5-footer.html` and the "Privacy Policy"
+link in `section-2-hero.html`'s consent line from the current relative
+paths (`privacy-policy.html`, `terms-of-use.html`) to whatever URLs GHL
+gives those published pages.
+
+## 6. Placeholders to replace before publishing
+
+Hero is running as a flat green gradient (no photo) and the carrier-logos
+row has been removed for this test campaign. Search `REPLACE` in any file
+here for what's left:
+1. **Agent headshot** (`section-3-trustbar.html`) — license number is
+   already filled in (FL Lic. #G097732).
+2. **Privacy Policy / Terms of Use links** (`section-2-hero.html`,
+   `section-5-footer.html`) — see step 5 above.
 
 ## Keeping this export in sync
 

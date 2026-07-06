@@ -46,11 +46,10 @@
   .fsp-page .wordmark b{color:var(--gold-500)}
 
   /* ---------- hero ---------- */
-  /* Hero photo: family backyard cookout at golden hour, hosted from GHL's
-     media library — replace the url() below with that hosted URL on import. */
+  /* Running as a flat green gradient for this test campaign (no photo). */
   .fsp-page .hero{position:relative;background:
-    linear-gradient(rgba(11,33,26,.7), rgba(11,33,26,.7)),
-    url("REPLACE-WITH-GHL-HOSTED-HERO-PHOTO-URL") center 32%/cover no-repeat;
+    radial-gradient(1100px 520px at 78% 12%, rgba(201,162,39,.14), transparent 60%),
+    linear-gradient(168deg, #123528 0%, var(--green-900) 46%, var(--green-950) 100%);
     color:var(--cream);overflow:hidden}
   .fsp-page .hero-inner{position:relative;max-width:1120px;margin:0 auto;padding:64px 24px 80px;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
   .fsp-page .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-500);margin-bottom:22px}
@@ -87,10 +86,6 @@
   /* REPLACE: .agent-photo with real headshot <img>, keep 56px circle + gold ring */
   .fsp-page .agent-name{font-weight:700;font-size:15px}
   .fsp-page .agent-cred{font-size:13px;color:var(--ink-soft)}
-  .fsp-page .carriers{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-left:auto}
-  .fsp-page .carriers-label{font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
-  .fsp-page .carrier-chip{font-size:12.5px;font-weight:600;color:var(--green-700);border:1.5px dashed #C4BA9F;border-radius:8px;padding:7px 12px;background:#fff}
-  /* REPLACE: .carrier-chip elements with actual carrier logo imgs (~28px tall, grayscale) */
 
   /* ---------- belief section ---------- */
   .fsp-page .belief{background:var(--cream-2);padding:84px 24px}
@@ -135,7 +130,6 @@
     .fsp-page .proofline{justify-content:center}
     .fsp-page .form-card{max-width:480px;margin:0 auto;width:100%;text-align:left}
     .fsp-page .trustbar-inner{justify-content:center;text-align:center}
-    .fsp-page .carriers{margin-left:0;justify-content:center}
     .fsp-page .stats{grid-template-columns:1fr}
     .fsp-page .belief{padding:56px 20px}
   }
