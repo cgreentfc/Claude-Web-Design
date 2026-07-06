@@ -1,0 +1,307 @@
+<!doctype html>
+<!--
+  ============================================================
+  THE FAMILY SHIELD PLAN — Funnel Step 1: Opt-In Page
+  ============================================================
+  DESIGN TOKENS (for rebuilding natively in GoHighLevel):
+    Colors
+      --green-950: #0B211A   deep forest (hero/footer ground)
+      --green-900: #0E2A22   primary surface green
+      --green-700: #1C4A3B   supporting green
+      --gold-500:  #C9A227   accent / CTA
+      --gold-400:  #D9B23B   CTA hover
+      --cream:     #FAF6EE   light section ground
+      --cream-2:   #F1EADC   card surface
+      --ink:       #1A1A18   text on light
+      --ink-soft:  #57574F   secondary text on light
+    Type
+      Display: "Fraunces" (Google Fonts), 600/700, tight leading
+      Body/UI: "Libre Franklin" (Google Fonts), 400/500/600
+    Spacing: 8px base grid. Section padding 72-96px desktop, 48px mobile.
+    Radius: 14px cards, 10px inputs/buttons.
+
+  A/B ALT HEADLINE (swap into .hero-headline to test):
+    "You're one signature away from leaving a paid-off house
+     instead of a funeral bill."
+
+  PLACEHOLDERS TO REPLACE BEFORE PUBLISHING (search "REPLACE"):
+    1. Hero photo         2. Agent headshot + license number
+    3. Carrier logos      4. Contact info / legal links
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Family Shield Plan — Free Coverage Breakdown</title>
+<meta name="description" content="Free 10-minute breakdown: what your work life-insurance policy actually pays — and how fathers earning $60K+ lock the mortgage so the house stays theirs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-950:#0B211A;
+    --green-900:#0E2A22;
+    --green-700:#1C4A3B;
+    --gold-500:#C9A227;
+    --gold-400:#D9B23B;
+    --cream:#FAF6EE;
+    --cream-2:#F1EADC;
+    --ink:#1A1A18;
+    --ink-soft:#57574F;
+    --display:"Fraunces",Georgia,"Times New Roman",serif;
+    --body:"Libre Franklin",-apple-system,"Segoe UI",Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.55}
+  img{max-width:100%}
+
+  /* ---------- top bar ---------- */
+  .topbar{background:var(--green-950);padding:18px 24px;display:flex;justify-content:center}
+  .wordmark{display:flex;align-items:center;gap:10px;color:var(--cream);text-decoration:none}
+  .wordmark svg{display:block}
+  .wordmark span{font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase}
+  .wordmark b{color:var(--gold-500)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;background:
+    radial-gradient(1100px 520px at 78% 12%, rgba(201,162,39,.14), transparent 60%),
+    linear-gradient(168deg, #123528 0%, var(--green-900) 46%, var(--green-950) 100%);
+    color:var(--cream);overflow:hidden}
+  /* REPLACE: hero photo. Swap the gradient above for a licensed photo of a
+     Black father with his kids in front of / inside their home (proud, warm,
+     daylight). Apply scrim: linear-gradient(rgba(11,33,26,.72), rgba(11,33,26,.88))
+     over the image so text passes contrast. */
+  .hero-art{position:absolute;inset:auto 0 0 0;height:66%;opacity:.10;pointer-events:none}
+  .photo-tag{position:absolute;top:14px;right:14px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-950);background:var(--gold-500);padding:5px 10px;border-radius:999px;opacity:.92}
+  .hero-inner{position:relative;max-width:1120px;margin:0 auto;padding:64px 24px 80px;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-500);margin-bottom:22px}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold-500)}
+  .hero-headline{font-family:var(--display);font-weight:600;font-size:clamp(34px,4.6vw,58px);line-height:1.06;letter-spacing:-.01em;text-wrap:balance;margin-bottom:22px}
+  .hero-headline em{font-style:italic;color:var(--gold-500)}
+  .hero-sub{font-size:18px;line-height:1.6;color:rgba(250,246,238,.85);max-width:52ch;margin-bottom:26px}
+  .hero-sub strong{color:var(--cream)}
+  .proofline{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:12.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(250,246,238,.72)}
+  .proofline span{display:inline-flex;align-items:center;gap:8px}
+  .proofline svg{flex:none}
+
+  /* ---------- form card ---------- */
+  .form-card{background:var(--cream);color:var(--ink);border-radius:14px;padding:30px 28px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);border-top:5px solid var(--gold-500)}
+  .form-card h2{font-family:var(--display);font-weight:700;font-size:24px;line-height:1.2;margin-bottom:6px;text-wrap:balance}
+  .form-card p.lede{font-size:14.5px;color:var(--ink-soft);margin-bottom:20px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  .field input{width:100%;font-family:var(--body);font-size:16px;padding:13px 14px;border:1.5px solid #CFC6B2;border-radius:10px;background:#fff;color:var(--ink)}
+  .field input:focus{outline:3px solid rgba(201,162,39,.45);border-color:var(--gold-500)}
+  .btn{display:block;width:100%;font-family:var(--body);font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--green-950);background:var(--gold-500);border:none;border-radius:10px;padding:16px 18px;cursor:pointer;transition:background .15s ease}
+  .btn:hover{background:var(--gold-400)}
+  .btn:focus-visible{outline:3px solid var(--green-900);outline-offset:2px}
+  .consent{display:flex;gap:10px;align-items:flex-start;margin:14px 0 10px}
+  .consent input{margin-top:3px;accent-color:var(--green-900);width:16px;height:16px;flex:none}
+  .consent label{font-size:12px;line-height:1.5;color:var(--ink-soft)}
+  .lock-note{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-soft)}
+
+  /* ---------- agent trust bar ---------- */
+  .trustbar{background:var(--cream);border-bottom:1px solid #E5DCC8}
+  .trustbar-inner{max-width:1120px;margin:0 auto;padding:26px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:20px 36px}
+  .agent{display:flex;align-items:center;gap:14px}
+  .agent-photo{width:56px;height:56px;border-radius:50%;background:var(--green-900);color:var(--gold-500);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:20px;border:2px solid var(--gold-500);flex:none}
+  /* REPLACE: .agent-photo with real headshot <img>, keep 56px circle + gold ring */
+  .agent-name{font-weight:700;font-size:15px}
+  .agent-cred{font-size:13px;color:var(--ink-soft)}
+  .carriers{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-left:auto}
+  .carriers-label{font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .carrier-chip{font-size:12.5px;font-weight:600;color:var(--green-700);border:1.5px dashed #C4BA9F;border-radius:8px;padding:7px 12px;background:#fff}
+  /* REPLACE: .carrier-chip elements with actual carrier logo imgs (~28px tall, grayscale) */
+
+  /* ---------- belief section ---------- */
+  .belief{background:var(--cream-2);padding:84px 24px}
+  .belief-inner{max-width:1120px;margin:0 auto;text-align:center}
+  .belief .eyebrow{color:var(--green-700)}
+  .belief .eyebrow::before{background:var(--gold-500)}
+  .belief h2{font-family:var(--display);font-weight:600;font-size:clamp(28px,3.4vw,42px);line-height:1.12;text-wrap:balance;max-width:22ch;margin:0 auto 14px}
+  .belief .belief-sub{font-size:17px;color:var(--ink-soft);max-width:62ch;margin:0 auto 46px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;text-align:left;margin-bottom:44px}
+  .stat-card{background:var(--cream);border-radius:14px;padding:30px 26px;border:1px solid #E5DCC8;display:flex;flex-direction:column;gap:10px}
+  .stat-num{font-family:var(--display);font-weight:700;font-size:46px;line-height:1;color:var(--green-900);font-variant-numeric:tabular-nums}
+  .stat-num small{font-size:24px}
+  .stat-card p{font-size:15px;line-height:1.6;color:var(--ink)}
+  .stat-src{font-size:12px;color:var(--ink-soft);margin-top:auto}
+  .belief-close{font-family:var(--display);font-style:italic;font-size:clamp(19px,2.2vw,24px);color:var(--green-900);max-width:44ch;margin:0 auto 30px;text-wrap:balance}
+  .btn-secondary{display:inline-block;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--green-950);background:var(--gold-500);text-decoration:none;border-radius:10px;padding:15px 34px;transition:background .15s ease}
+  .btn-secondary:hover{background:var(--gold-400)}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--green-950);color:rgba(250,246,238,.75);padding:56px 24px 40px}
+  .footer-inner{max-width:1120px;margin:0 auto}
+  .footer-top{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;padding-bottom:28px;border-bottom:1px solid rgba(250,246,238,.15);margin-bottom:26px}
+  .footer-links{display:flex;gap:26px;flex-wrap:wrap;font-size:13.5px}
+  .footer-links a{color:rgba(250,246,238,.85);text-decoration:underline;text-underline-offset:3px}
+  .footer-legal{font-size:12px;line-height:1.7;color:rgba(250,246,238,.55);max-width:100ch}
+  .footer-legal p{margin-bottom:10px}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .hero-inner{grid-template-columns:1fr;gap:38px;padding:48px 20px 56px;text-align:center}
+    .eyebrow{justify-content:center}
+    .eyebrow::before{display:none}
+    .hero-sub{margin-left:auto;margin-right:auto}
+    .proofline{justify-content:center}
+    .form-card{max-width:480px;margin:0 auto;width:100%;text-align:left}
+    .trustbar-inner{justify-content:center;text-align:center}
+    .carriers{margin-left:0;justify-content:center}
+    .stats{grid-template-columns:1fr}
+    .belief{padding:56px 20px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">
+  <a class="wordmark" href="#">
+    <svg width="26" height="30" viewBox="0 0 26 30" fill="none" aria-hidden="true">
+      <path d="M13 1 24 5.5v8.2c0 7.4-4.7 12.6-11 14.8C6.7 26.3 2 21.1 2 13.7V5.5L13 1Z" stroke="#C9A227" stroke-width="2" fill="none"/>
+      <path d="M7.5 15.5v-3.2L13 8.5l5.5 3.8v3.2" stroke="#C9A227" stroke-width="1.8" fill="none"/>
+      <path d="M9.5 15.5h7V21h-7v-5.5Z" stroke="#C9A227" stroke-width="1.8" fill="none"/>
+    </svg>
+    <span>The <b>Family Shield</b> Plan</span>
+  </a>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <!-- REPLACE: photo placeholder — see comment in CSS .hero block -->
+  <span class="photo-tag">Placeholder — swap hero photo</span>
+  <svg class="hero-art" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" fill="none" aria-hidden="true">
+    <path d="M100 400V240l180-120 180 120v160" stroke="#FAF6EE" stroke-width="3"/>
+    <path d="M740 400V220l210-140 210 140v180" stroke="#FAF6EE" stroke-width="3"/>
+    <path d="M0 400h1200" stroke="#FAF6EE" stroke-width="3"/>
+    <path d="M330 400v-90h60v90" stroke="#FAF6EE" stroke-width="3"/>
+  </svg>
+
+  <div class="hero-inner">
+    <div>
+      <p class="eyebrow">For fathers building first-generation wealth</p>
+      <h1 class="hero-headline">The first generation to own the house <em>shouldn&rsquo;t be the last.</em></h1>
+      <p class="hero-sub">Free 10-minute breakdown: what your work policy <strong>actually pays</strong>, how long your family could keep the house on it &mdash; and how fathers earning $60K+ lock the mortgage for about the cost of a dinner out.</p>
+      <div class="proofline">
+        <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7.5 5.5 11 12 3" stroke="#C9A227" stroke-width="2.2" stroke-linecap="round"/></svg>No-exam options</span>
+        <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7.5 5.5 11 12 3" stroke="#C9A227" stroke-width="2.2" stroke-linecap="round"/></svg>Transparent pricing</span>
+        <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7.5 5.5 11 12 3" stroke="#C9A227" stroke-width="2.2" stroke-linecap="round"/></svg>Takes 15 minutes</span>
+      </div>
+    </div>
+
+    <!-- ============ OPT-IN FORM ============
+         GHL: either (a) keep this markup and point the form at your GHL
+         form/webhook, or (b) delete this <form> and drop a native GHL form
+         embed inside .form-card, styling it to match the tokens above. -->
+    <form class="form-card" id="optin" method="post" action="#">
+      <h2>Watch the free breakdown now</h2>
+      <p class="lede">Instant access &mdash; see the exact gap in your current coverage before your next birthday reprices it.</p>
+      <div class="field">
+        <label for="full_name">Full name</label>
+        <input type="text" id="full_name" name="full_name" autocomplete="name" placeholder="Eric Johnson" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com" required>
+      </div>
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(555) 555-0199" required>
+      </div>
+      <button class="btn" type="submit">Show Me the Gap &rarr;</button>
+      <div class="consent">
+        <input type="checkbox" id="consent" name="consent" required>
+        <label for="consent">I agree to receive calls and text messages about my coverage request at the number provided (msg &amp; data rates may apply, reply STOP to opt out). Consent is not a condition of purchase. <a href="#privacy" style="color:inherit">Privacy Policy</a></label>
+      </div>
+      <p class="lock-note"><svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true"><rect x="1" y="6" width="10" height="7" rx="1.5" stroke="#57574F" stroke-width="1.5"/><path d="M3.5 6V4.2A2.5 2.5 0 0 1 6 1.7a2.5 2.5 0 0 1 2.5 2.5V6" stroke="#57574F" stroke-width="1.5"/></svg>Your information is never sold or shared.</p>
+    </form>
+  </div>
+</header>
+
+<!-- ============ AGENT TRUST BAR ============ -->
+<section class="trustbar" aria-label="About your agent">
+  <div class="trustbar-inner">
+    <div class="agent">
+      <!-- REPLACE: real headshot -->
+      <div class="agent-photo" aria-hidden="true">CG</div>
+      <div>
+        <div class="agent-name">C. Green</div>
+        <!-- REPLACE: license number -->
+        <div class="agent-cred">Licensed Life Insurance Agent &middot; FL Lic. #XXXXXXX</div>
+      </div>
+    </div>
+    <div class="carriers">
+      <span class="carriers-label">Policies placed with A-rated carriers</span>
+      <!-- REPLACE: actual carrier logos -->
+      <span class="carrier-chip">Carrier logo</span>
+      <span class="carrier-chip">Carrier logo</span>
+      <span class="carrier-chip">Carrier logo</span>
+      <span class="carrier-chip">Carrier logo</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BELIEF SECTION: THE COVERAGE ILLUSION ============ -->
+<section class="belief">
+  <div class="belief-inner">
+    <p class="eyebrow" style="justify-content:center">The Coverage Illusion</p>
+    <h2>Having a policy isn&rsquo;t the same as being covered.</h2>
+    <p class="belief-sub">Our community buys life insurance at a higher rate than anyone &mdash; and still, the house is the first thing at risk. Here&rsquo;s the math nobody put in front of you.</p>
+
+    <div class="stats">
+      <div class="stat-card">
+        <span class="stat-num">56<small>%</small></span>
+        <p>of Black Americans own life insurance &mdash; a <strong>higher</strong> ownership rate than the general population. Owning a policy was never the problem.</p>
+        <span class="stat-src">LIMRA Insurance Barometer Study</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">&frac13;</span>
+        <p>Yet median coverage held is roughly one-third that of white policy owners &mdash; often a policy sized to cover a funeral, not to replace an income or pay off a house.</p>
+        <span class="stat-src">Industry survey data</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">$500K+</span>
+        <p>is what an honest needs analysis shows a father earning $60K+ with a mortgage and kids actually requires &mdash; typically $500K to $1.5M. Most work policies pay 1&ndash;2x salary.</p>
+        <span class="stat-src">DIME needs-analysis method</span>
+      </div>
+    </div>
+
+    <p class="belief-close">&ldquo;The 10-minute video shows you the difference &mdash; and the 15-minute fix.&rdquo;</p>
+    <a class="btn-secondary" href="#optin">Watch the Free Breakdown</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="privacy">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a class="wordmark" href="#">
+        <svg width="22" height="26" viewBox="0 0 26 30" fill="none" aria-hidden="true">
+          <path d="M13 1 24 5.5v8.2c0 7.4-4.7 12.6-11 14.8C6.7 26.3 2 21.1 2 13.7V5.5L13 1Z" stroke="#C9A227" stroke-width="2" fill="none"/>
+          <path d="M7.5 15.5v-3.2L13 8.5l5.5 3.8v3.2" stroke="#C9A227" stroke-width="1.8" fill="none"/>
+          <path d="M9.5 15.5h7V21h-7v-5.5Z" stroke="#C9A227" stroke-width="1.8" fill="none"/>
+        </svg>
+        <span>The <b>Family Shield</b> Plan</span>
+      </a>
+      <div class="footer-links">
+        <!-- REPLACE: real links + contact -->
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="mailto:cgreen.flinsurance@gmail.com">Contact</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>The Family Shield Plan offers term life insurance placed through licensed agents with A-rated insurance carriers. Product availability, rates, and underwriting requirements vary by state, age, health class, and carrier. Nothing on this page is a guarantee of coverage or a quote; final pricing is determined by the issuing carrier upon application. No-exam options are subject to carrier eligibility.</p>
+      <p>Ownership statistic: LIMRA Insurance Barometer Study. Coverage-amount comparison: industry survey data; figures are directional. Needs estimates use the DIME (Debt, Income, Mortgage, Education) method and are illustrative, not personalized advice.</p>
+      <p>&copy; 2026 The Family Shield Plan. All rights reserved. <!-- REPLACE: legal entity name --></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
