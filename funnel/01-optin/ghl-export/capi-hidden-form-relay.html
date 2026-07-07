@@ -1,0 +1,119 @@
+<!-- ============================================================
+     THE FAMILY SHIELD PLAN — Relay custom form submits into a
+     hidden native GHL form (for Meta Conversions API)
+     ============================================================
+     WHAT THIS IS FOR: GHL's own Meta Conversions API (CAPI)
+     integration only captures Facebook's browser tracking cookies
+     (_fbp / _fbc), the visitor's IP address, and user agent when a
+     lead comes in through a native GHL Form element — not a raw
+     webhook. A webhook you build yourself doesn't automatically
+     carry that browser-side data, so CAPI matching stays weak.
+
+     This script keeps the hero form and popup form exactly as
+     styled, but on submit, copies the entered values into a hidden
+     native GHL form on this same page and clicks THAT form's submit
+     button instead — so GHL's own capture (and the CAPI handoff
+     behind it) fires the same as if the visitor filled it out
+     directly.
+
+     ============================================================
+     SETUP — do this once in GHL, then fill in the REPLACE constants
+     below:
+
+     1. Add a native "Form" element (drag-and-drop form builder, NOT
+        a Custom Code block) to this same funnel step. Build it with
+        matching fields: Full Name (or First + Last, if that's all
+        your form builder offers), Email, Phone, and — if your native
+        forms support a checkbox field type — a consent checkbox.
+        Save/publish the step.
+
+     2. Hide that form's row so visitors never see it. Click the row
+        → look for "CSS ID" or "CSS Class" under Advanced/Settings →
+        give it something like `fsp-hidden-capi-form`. Then add this
+        to custom-css.css (or head-code.html):
+          .fsp-hidden-capi-form{position:absolute;left:-9999px;top:-9999px}
+        (Visually-hidden off-screen, not display:none — some GHL
+        forms silently skip validation or tracking on display:none
+        fields. If off-screen positioning doesn't work, try
+        display:none as a fallback and test either way.)
+
+     3. View the PUBLISHED page (not the editor), right-click each
+        hidden field → Inspect, and copy its actual `id` or `name`
+        attribute into FIELD_SELECTORS below. Do the same for the
+        hidden form's submit button.
+
+     4. IMPORTANT — CHECK THIS BEFORE ANYTHING ELSE: if Inspect
+        Element shows the hidden form's fields wrapped inside an
+        <iframe> tag (rather than plain <input> tags sitting directly
+        in this page's own HTML), this script CANNOT reach them —
+        cross-origin iframes block JavaScript from touching what's
+        inside. Native Funnel-builder "Form" elements are usually
+        inline (no iframe) as opposed to the embed-code version meant
+        for external sites, but this can vary by GHL plan/version.
+        If you see an iframe, stop and flag it — this needs a
+        different approach (there may be a GHL-hosted Forms API to
+        post to directly instead).
+     ============================================================ -->
+<script>
+(function(){
+  var FIELD_SELECTORS = {
+    fullName: '#REPLACE-hidden-name-input-id',
+    email:    '#REPLACE-hidden-email-input-id',
+    phone:    '#REPLACE-hidden-phone-input-id',
+    // Optional — delete this line entirely if your hidden form has no consent field:
+    consent:  '#REPLACE-hidden-consent-checkbox-id'
+  };
+  var SUBMIT_BUTTON_SELECTOR = '#REPLACE-hidden-form-submit-button-id';
+
+  function setFieldValue(selector, value){
+    var el = document.querySelector(selector);
+    if (!el){ console.warn('[fsp relay] missing field, check FIELD_SELECTORS:', selector); return; }
+    if (el.type === 'checkbox'){ el.checked = !!value; }
+    else { el.value = value; }
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
+  function relaySubmit(sourceForm){
+    var data = new FormData(sourceForm);
+    setFieldValue(FIELD_SELECTORS.fullName, data.get('full_name') || '');
+    setFieldValue(FIELD_SELECTORS.email, data.get('email') || '');
+    setFieldValue(FIELD_SELECTORS.phone, data.get('phone') || '');
+    if (FIELD_SELECTORS.consent){
+      setFieldValue(FIELD_SELECTORS.consent, !!data.get('consent'));
+    }
+
+    var submitBtn = document.querySelector(SUBMIT_BUTTON_SELECTOR);
+    if (!submitBtn){
+      console.error('[fsp relay] hidden form submit button not found — check SUBMIT_BUTTON_SELECTOR');
+      return;
+    }
+    submitBtn.click();
+
+    // GHL's own confirmation UI lives on the hidden form, which the
+    // visitor never sees — show our own success state on the visible
+    // form instead. Adjust the message/markup to match your design.
+    sourceForm.innerHTML = '<p style="font-family:var(--display,Georgia,serif);font-weight:700;font-size:20px;text-align:center;padding:20px 0">You&rsquo;re in &mdash; check your phone or email shortly.</p>';
+  }
+
+  function attach(formId){
+    var form = document.getElementById(formId);
+    if (!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      relaySubmit(form);
+    });
+  }
+
+  function init(){
+    attach('optin');        // hero form, section-2-hero.html
+    attach('popup-optin');  // popup form, either popup-exit-optin*.html
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

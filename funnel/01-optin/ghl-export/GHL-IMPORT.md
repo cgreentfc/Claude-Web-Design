@@ -52,16 +52,22 @@ This is a per-section setting — repeat it for all five rows.
 
 ## 3. Wire the form
 
-The form in `section-2-hero.html` currently has `action="#"` — it's a
-placeholder. Point it at your GHL inbound webhook URL once you have one:
+Two ways to do this, depending on what you're using downstream:
 
-```html
-<form class="form-card" id="optin" method="post" action="YOUR_WEBHOOK_URL_HERE">
-```
-
-Field names sent are `full_name`, `email`, `phone`, `consent` — plain names
-chosen so they map easily to most webhook/workflow setups. Share the
-endpoint and whatever field names it expects and this gets wired precisely.
+- **Plain webhook** — if you're not relying on GHL's Meta Conversions API
+  integration, just point the form at your GHL inbound webhook URL:
+  ```html
+  <form class="form-card" id="optin" method="post" action="YOUR_WEBHOOK_URL_HERE">
+  ```
+  Field names sent are `full_name`, `email`, `phone`, `consent` — plain
+  names chosen so they map easily to most webhook/workflow setups.
+- **Relay into a hidden native GHL form (for Meta CAPI)** — if you're
+  sending qualified leads back to Facebook via GHL's Conversions API
+  integration, a raw webhook won't carry the browser-side data (`_fbp`/
+  `_fbc` cookies, IP, user agent) that CAPI matching needs — only a native
+  GHL Form capture does. See step 6a below for the full setup; leave
+  `action="#"` on this form in that case, since the hidden form submits
+  instead.
 
 ## 4. No JavaScript is needed
 
@@ -114,6 +120,29 @@ Two versions, depending on what your GHL page gives you:
 Don't use both at once on the same popup — pick whichever matches what
 your GHL page actually gives you, or it'll double the overlay/trigger.
 
+## 6a. Optional: route both forms through a hidden native GHL form (Meta CAPI)
+
+If you're using GHL's Meta Conversions API integration, `capi-hidden-form-relay.html`
+covers this — it's a single script that catches submissions from both the
+hero form (`#optin`) and the popup form (`#popup-optin`), copies the values
+into a hidden native GHL Form element on the same page, and clicks that
+form's real submit button so GHL's own capture (and the CAPI handoff) fires
+normally, with your form's own styling untouched.
+
+Full setup steps (native Form element, hiding its row, finding its field
+selectors, the iframe caveat to check for) are documented inline at the top
+of the file itself — read those before filling in the `REPLACE` constants.
+Drop the whole file as one Custom HTML element anywhere after the hero and
+popup rows (last row on the page, or Tracking Code → Footer if your step
+has that field).
+
+**Facebook ID / Facebook profile:** what CAPI actually matches on isn't a
+literal "Facebook ID" field — it's the `_fbp`/`_fbc` browser cookies (set by
+your Meta Pixel base code already on the page), plus IP address and user
+agent, all attached automatically by GHL once the lead comes through its
+native form capture. There's no separate field to collect for this; it
+happens on the backend once the hidden form fires.
+
 ## 7. Placeholders to replace before publishing
 
 Hero is running as a flat green gradient (no photo) and the carrier-logos
@@ -125,8 +154,9 @@ here for what's left:
    URL it gives you. License number is already filled in (FL Lic. #G097732).
 2. **Privacy Policy / Terms of Use links** (`section-2-hero.html`,
    `section-5-footer.html`) — see step 5 above.
-3. **Popup form action** (`popup-exit-optin.html`, if you're using it) —
-   same webhook URL as the hero form, wired the same way (step 3 above).
+3. **Form submission** — either the webhook URL (both forms) or the four
+   hidden-field selectors in `capi-hidden-form-relay.html` — see step 3
+   and step 6a above.
 
 ## Keeping this export in sync
 
