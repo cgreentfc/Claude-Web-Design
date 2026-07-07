@@ -86,7 +86,24 @@ link in `section-2-hero.html`'s consent line from the current relative
 paths (`privacy-policy.html`, `terms-of-use.html`) to whatever URLs GHL
 gives those published pages.
 
-## 6. Placeholders to replace before publishing
+## 6. Optional: scroll-triggered exit popup
+
+`popup-exit-optin.html` is a second, smaller opt-in styled to match the
+page (cream card, gold border, same trust line), meant to catch visitors
+who scroll to the bottom without filling out the hero form. Same fields,
+same TCPA consent language — copy leans slightly more urgent ("I'll check
+it later" is how the gap stays open") since it's a last-chance moment, but
+still no fabricated scarcity, per the Forbidden Persuasion guardrail.
+
+Drop it as a Custom HTML element in any row (it's a fixed-position overlay,
+so row placement doesn't matter). It's self-contained with its own
+`<style>` and a fallback `<script>` that shows it once per browser tab when
+the visitor scrolls near the bottom of the page. **If your GHL popup tool
+has its own trigger settings (scroll %, exit intent, time delay) built into
+its UI**, use that instead and just paste in the `.fsp-popup-card` markup
+as the popup's content — don't run both triggers at once, or it'll double-fire.
+
+## 7. Placeholders to replace before publishing
 
 Hero is running as a flat green gradient (no photo) and the carrier-logos
 row has been removed for this test campaign. Search `REPLACE` in any file
@@ -97,6 +114,8 @@ here for what's left:
    URL it gives you. License number is already filled in (FL Lic. #G097732).
 2. **Privacy Policy / Terms of Use links** (`section-2-hero.html`,
    `section-5-footer.html`) — see step 5 above.
+3. **Popup form action** (`popup-exit-optin.html`, if you're using it) —
+   same webhook URL as the hero form, wired the same way (step 3 above).
 
 ## Keeping this export in sync
 

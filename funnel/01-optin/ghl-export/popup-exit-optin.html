@@ -1,0 +1,125 @@
+<!-- ============================================================
+     THE FAMILY SHIELD PLAN — Scroll-Triggered Exit Popup
+     ============================================================
+     WHERE THIS GOES: drop this whole block as a Custom HTML element,
+     in its own row, ANYWHERE on the page (it's a fixed-position overlay,
+     so its row placement doesn't matter — the last row is fine).
+
+     TRIGGER: if your GHL popup tool has its own trigger settings
+     (scroll %, exit intent, time delay) built into its UI, you likely
+     don't need the <script> block below at all — just paste the
+     .fsp-popup-card markup as the popup's content and let GHL handle
+     show/hide. This file includes its own overlay + scroll trigger as
+     a fallback, in case your "custom HTML popup" is fully raw with no
+     built-in trigger. Using both at once would double-fire it, so pick
+     one path.
+
+     FALLBACK TRIGGER BEHAVIOR (if you keep the <script>): shows once
+     per browser tab (sessionStorage-gated) when the visitor scrolls to
+     within ~150px of the bottom of the page. Closes on the × button,
+     a click on the dark backdrop, or Escape.
+
+     Self-contained on purpose (own scoped styles under .fsp-popup,
+     own copy of the design tokens) so it doesn't depend on the
+     .fsp-page CSS from head-code.html being loaded first.
+     ============================================================ -->
+<style>
+  .fsp-popup{
+    --green-950:#0B211A;
+    --green-900:#0E2A22;
+    --gold-500:#C9A227;
+    --gold-400:#D9B23B;
+    --cream:#FAF6EE;
+    --ink:#1A1A18;
+    --ink-soft:#57574F;
+    --display:"Fraunces",Georgia,"Times New Roman",serif;
+    --body:"Libre Franklin",-apple-system,"Segoe UI",Arial,sans-serif;
+  }
+  .fsp-popup-overlay{position:fixed;inset:0;background:rgba(11,33,26,.75);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+  .fsp-popup-overlay.is-open{display:flex}
+  .fsp-popup-card{position:relative;width:100%;max-width:440px;max-height:92vh;overflow-y:auto;background:var(--cream);color:var(--ink);border-radius:14px;padding:34px 30px 26px;box-shadow:0 30px 80px rgba(0,0,0,.45);border-top:5px solid var(--gold-500);font-family:var(--body);line-height:1.55;box-sizing:border-box}
+  .fsp-popup-card *{box-sizing:border-box}
+  .fsp-popup-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border:none;background:transparent;color:var(--ink-soft);font-size:22px;line-height:1;cursor:pointer;border-radius:50%}
+  .fsp-popup-close:hover{background:#EFE7D6}
+  .fsp-popup-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-400);background:var(--green-950);padding:5px 12px;border-radius:999px;margin-bottom:16px}
+  .fsp-popup-card h2{font-family:var(--display);font-weight:700;font-size:23px;line-height:1.22;margin:0 0 10px;text-wrap:balance}
+  .fsp-popup-card p.lede{font-size:14.5px;color:var(--ink-soft);margin:0 0 20px}
+  .fsp-popup-field{margin-bottom:12px}
+  .fsp-popup-field label{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+  .fsp-popup-field input{width:100%;font-family:var(--body);font-size:16px;padding:12px 13px;border:1.5px solid #CFC6B2;border-radius:10px;background:#fff;color:var(--ink)}
+  .fsp-popup-field input:focus{outline:3px solid rgba(201,162,39,.45);border-color:var(--gold-500)}
+  .fsp-popup-btn{display:block;width:100%;font-family:var(--body);font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--green-950);background:var(--gold-500);border:none;border-radius:10px;padding:15px 18px;cursor:pointer}
+  .fsp-popup-btn:hover{background:var(--gold-400)}
+  .fsp-popup-consent{display:flex;gap:9px;align-items:flex-start;margin:13px 0 10px}
+  .fsp-popup-consent input{margin-top:3px;accent-color:var(--green-900);width:16px;height:16px;flex:none}
+  .fsp-popup-consent label{font-size:11.5px;line-height:1.5;color:var(--ink-soft)}
+  .fsp-popup-lock{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--ink-soft);margin:0}
+</style>
+
+<div class="fsp-popup fsp-popup-overlay" id="fspPopupOverlay" aria-hidden="true">
+  <div class="fsp-popup-card" role="dialog" aria-modal="true" aria-labelledby="fspPopupHeadline">
+    <button class="fsp-popup-close" type="button" aria-label="Close" onclick="document.getElementById('fspPopupOverlay').classList.remove('is-open')">&times;</button>
+    <p class="fsp-popup-eyebrow">Before you go</p>
+    <h2 id="fspPopupHeadline">&ldquo;I&rsquo;ll check it later&rdquo; is how the gap stays open.</h2>
+    <p class="lede">You just saw what's actually in that folder. Later works &mdash; as long as later isn't never. Ten minutes, right now, and you'll know your real number before you close this tab.</p>
+
+    <!-- REPLACE: point this form's action at your GHL inbound webhook URL,
+         same as the hero form. source=popup is a hidden field so your
+         workflow can tell this lead apart from the hero opt-in if useful
+         — delete that one line if you don't need it. -->
+    <form method="post" action="#">
+      <input type="hidden" name="source" value="popup">
+      <div class="fsp-popup-field">
+        <label for="popup_full_name">Full name</label>
+        <input type="text" id="popup_full_name" name="full_name" autocomplete="name" placeholder="Eric Johnson" required>
+      </div>
+      <div class="fsp-popup-field">
+        <label for="popup_email">Email</label>
+        <input type="email" id="popup_email" name="email" autocomplete="email" placeholder="you@email.com" required>
+      </div>
+      <div class="fsp-popup-field">
+        <label for="popup_phone">Phone</label>
+        <input type="tel" id="popup_phone" name="phone" autocomplete="tel" placeholder="(555) 555-0199" required>
+      </div>
+      <button class="fsp-popup-btn" type="submit">Show Me My Real Number &rarr;</button>
+      <div class="fsp-popup-consent">
+        <input type="checkbox" id="popup_consent" name="consent" required>
+        <label for="popup_consent">I agree to receive calls and text messages about my coverage request at the number provided (msg &amp; data rates may apply, reply STOP to opt out). Consent is not a condition of purchase.</label>
+      </div>
+      <p class="fsp-popup-lock">Your information is never sold or shared.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'fsp_popup_shown';
+  if (sessionStorage.getItem(STORAGE_KEY)) return;
+
+  var overlay = document.getElementById('fspPopupOverlay');
+  var shown = false;
+
+  function maybeShow(){
+    if (shown) return;
+    var scrolledToBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 150);
+    if (scrolledToBottom){
+      shown = true;
+      overlay.classList.add('is-open');
+      sessionStorage.setItem(STORAGE_KEY, '1');
+      window.removeEventListener('scroll', maybeShow);
+    }
+  }
+
+  function close(){
+    overlay.classList.remove('is-open');
+  }
+
+  window.addEventListener('scroll', maybeShow, { passive: true });
+  overlay.addEventListener('click', function(e){
+    if (e.target === overlay) close();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') close();
+  });
+})();
+</script>
