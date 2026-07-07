@@ -109,18 +109,21 @@
     sourceForm.innerHTML = '<p style="font-family:var(--display,Georgia,serif);font-weight:700;font-size:20px;text-align:center;padding:20px 0">You&rsquo;re in &mdash; check your phone or email shortly.</p>';
   }
 
-  var WATCHED_FORM_IDS = ['optin', 'popup-optin'];
-
   // Delegated listener on document, not a direct listener on each form.
-  // The popup's form (#popup-optin) doesn't exist in the DOM until the
-  // popup actually opens, so looking it up once at page-load time (the
-  // old approach) silently found nothing and never attached anything —
-  // meaning the popup's submit fell through to the browser's default
-  // behavior (a POST back to the page's own URL, which the server
-  // rejects). Listening on document catches the submit regardless of
-  // when the form was inserted into the page.
+  // Two reasons this can't use getElementById + a fixed list of ids:
+  // 1. The popup's form doesn't exist in the DOM until the popup opens,
+  //    so looking it up once at page-load time finds nothing.
+  // 2. GHL strips the `id` attribute off <form> tags placed inside its
+  //    native Popup component specifically (it keeps id on the fields
+  //    inside the form, just not the form tag itself) — so even a
+  //    delegated listener matching by e.target.id won't see it.
+  // Matching by class instead sidesteps both: the listener works no
+  // matter when the form was inserted, and the class survives GHL's
+  // sanitizing where the id doesn't. Both source forms (hero + popup)
+  // carry class="fsp-relay-form" for exactly this reason — don't
+  // remove that class if you edit those files.
   document.addEventListener('submit', function(e){
-    if (WATCHED_FORM_IDS.indexOf(e.target.id) === -1) return;
+    if (!e.target.classList || !e.target.classList.contains('fsp-relay-form')) return;
     e.preventDefault();
     relaySubmit(e.target);
   });
