@@ -37,10 +37,14 @@
         fields. If off-screen positioning doesn't work, try
         display:none as a fallback and test either way.)
 
-     3. View the PUBLISHED page (not the editor), right-click each
-        hidden field → Inspect, and copy its actual `id` or `name`
-        attribute into FIELD_SELECTORS below. Do the same for the
-        hidden form's submit button.
+     3. FIELD_SELECTORS below is already filled in for this page's
+        hidden form (full_name/email/phone by id, consent by name
+        since GHL randomizes that checkbox's id on every render). If
+        you rebuild the hidden form later and the ids change, redo
+        this by viewing the PUBLISHED page (not the editor) and
+        inspecting each field. SUBMIT_BUTTON_SELECTOR still needs to
+        be filled in — inspect the hidden form's submit button the
+        same way.
 
      4. IMPORTANT — CHECK THIS BEFORE ANYTHING ELSE: if Inspect
         Element shows the hidden form's fields wrapped inside an
@@ -57,11 +61,12 @@
 <script>
 (function(){
   var FIELD_SELECTORS = {
-    fullName: '#REPLACE-hidden-name-input-id',
-    email:    '#REPLACE-hidden-email-input-id',
-    phone:    '#REPLACE-hidden-phone-input-id',
-    // Optional — delete this line entirely if your hidden form has no consent field:
-    consent:  '#REPLACE-hidden-consent-checkbox-id'
+    fullName: '#full_name',
+    email:    '#email',
+    phone:    '#phone',
+    // Selected by [name] rather than [id] — GHL appends a random suffix to
+    // this checkbox's id on every render, but the name stays stable.
+    consent:  'input[name="terms_and_conditions"]'
   };
   var SUBMIT_BUTTON_SELECTOR = '#REPLACE-hidden-form-submit-button-id';
 
