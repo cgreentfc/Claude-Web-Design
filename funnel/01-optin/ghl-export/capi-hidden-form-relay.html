@@ -68,7 +68,12 @@
     // this checkbox's id on every render, but the name stays stable.
     consent:  'input[name="terms_and_conditions"]'
   };
-  var SUBMIT_BUTTON_SELECTOR = '#REPLACE-hidden-form-submit-button-id';
+  // No unique id on this button, so it's matched by its class combo +
+  // type. If your page ends up with more than one native GHL form/button
+  // sharing this exact class list (e.g. inside the exit popup too), this
+  // selector will grab whichever one comes first in the DOM — check the
+  // console warning below if that's a risk on your page.
+  var SUBMIT_BUTTON_SELECTOR = 'button.btn.btn-dark.button-element[type="submit"]';
 
   function setFieldValue(selector, value){
     var el = document.querySelector(selector);
@@ -88,12 +93,15 @@
       setFieldValue(FIELD_SELECTORS.consent, !!data.get('consent'));
     }
 
-    var submitBtn = document.querySelector(SUBMIT_BUTTON_SELECTOR);
-    if (!submitBtn){
+    var submitMatches = document.querySelectorAll(SUBMIT_BUTTON_SELECTOR);
+    if (submitMatches.length === 0){
       console.error('[fsp relay] hidden form submit button not found — check SUBMIT_BUTTON_SELECTOR');
       return;
     }
-    submitBtn.click();
+    if (submitMatches.length > 1){
+      console.warn('[fsp relay] SUBMIT_BUTTON_SELECTOR matched ' + submitMatches.length + ' elements — clicking the first one. Make the selector more specific if that\'s not the right one.');
+    }
+    submitMatches[0].click();
 
     // GHL's own confirmation UI lives on the hidden form, which the
     // visitor never sees — show our own success state on the visible
