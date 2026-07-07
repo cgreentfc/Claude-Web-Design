@@ -95,13 +95,24 @@ same TCPA consent language — copy leans slightly more urgent ("I'll check
 it later" is how the gap stays open") since it's a last-chance moment, but
 still no fabricated scarcity, per the Forbidden Persuasion guardrail.
 
-Drop it as a Custom HTML element in any row (it's a fixed-position overlay,
-so row placement doesn't matter). It's self-contained with its own
-`<style>` and a fallback `<script>` that shows it once per browser tab when
-the visitor scrolls near the bottom of the page. **If your GHL popup tool
-has its own trigger settings (scroll %, exit intent, time delay) built into
-its UI**, use that instead and just paste in the `.fsp-popup-card` markup
-as the popup's content — don't run both triggers at once, or it'll double-fire.
+Two versions, depending on what your GHL page gives you:
+
+- **`popup-exit-optin.html`** — use this if you're placing it as a plain
+  Custom HTML element with no native popup shell around it. It's fully
+  self-contained: its own fixed overlay, its own close (×) button, and a
+  `<script>` that shows it once per browser tab when the visitor scrolls
+  near the bottom of the page.
+- **`popup-exit-optin-content-only.html`** — use this if your page has a
+  native **Popup** element (its own settings panel with Background,
+  Position, and a "Show popup on" trigger dropdown — GHL's Funnels
+  builder has this). That element already provides the overlay, backdrop,
+  positioning, and close behavior, so this version is just the card
+  content with no overlay/close button/script of its own. **Set "Show
+  popup on" to an actual trigger (scroll/exit-intent/time-delay) —
+  leaving it on "None" means it will never fire.**
+
+Don't use both at once on the same popup — pick whichever matches what
+your GHL page actually gives you, or it'll double the overlay/trigger.
 
 ## 7. Placeholders to replace before publishing
 
