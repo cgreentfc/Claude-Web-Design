@@ -10,12 +10,17 @@ GoHighLevel (GHL).
 |------|------|--------|-----|
 | 1 | `01-optin/` — Opt-in | **Built (design v1, copy v2)** | Capture name/email/phone; install Beliefs 1–3 (stakes → gap → absolution) |
 | 2 | `02-vsl/` — Video page | Not started | The 10-min breakdown; installs Beliefs 4–6 (possibility → vehicle → urgency) |
-| 3 | `03-quiz/` — Questionnaire | Not started | "How exposed is your family?" qualification + call pre-frame data |
+| 3 | `03-quiz/` — Questionnaire | **Built (quiz v1)** | "How exposed is your family?" qualification + call pre-frame data |
 | 4 | `04-scheduler/` — Booking | Not started | Book the Conviction Call (GHL calendar) |
 | 5 | `05-confirmation/` — Confirmation | Not started | Lock the appointment, pre-frame the call, reduce no-shows |
 
 ## Changelog
 
+- **Quiz v1** — `03-quiz/ghl-export/` — 7-question belief-path survey for
+  GHL's Survey builder (qualification + call pre-frame data). Sourced from
+  the same research dossier as the opt-in page's belief section. See
+  `03-quiz/ghl-export/GHL-SURVEY-IMPORT.md` for setup steps and the answer
+  → contact-field mapping.
 - **GHL export** — `01-optin/ghl-export/` packages the page into what GHL's
   Funnels builder needs (a head-code CSS/fonts snippet + one Custom HTML
   fragment per row). See `01-optin/ghl-export/GHL-IMPORT.md` for exact
