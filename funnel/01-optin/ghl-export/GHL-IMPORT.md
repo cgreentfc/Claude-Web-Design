@@ -42,6 +42,14 @@ matching file:
 | 4 | `section-4-belief.html` | "The Coverage Illusion" stat section |
 | 5 | `section-5-footer.html` | Footer + compliance/legal copy |
 
+**Common gotcha:** if a section shows up centered with gray margins on
+both sides instead of running edge-to-edge, that's GHL's own Section
+width setting, not the CSS. Click the Section (not the element) → find
+**Content Width** and set it to **Full Width / Stretch** (not "Boxed"),
+and set the Section's left/right padding to **0** (GHL's default padding
+will otherwise double up with the padding already built into the CSS).
+This is a per-section setting — repeat it for all five rows.
+
 ## 3. Wire the form
 
 The form in `section-2-hero.html` currently has `action="#"` — it's a
