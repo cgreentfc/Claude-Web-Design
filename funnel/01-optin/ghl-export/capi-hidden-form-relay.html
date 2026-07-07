@@ -109,24 +109,20 @@
     sourceForm.innerHTML = '<p style="font-family:var(--display,Georgia,serif);font-weight:700;font-size:20px;text-align:center;padding:20px 0">You&rsquo;re in &mdash; check your phone or email shortly.</p>';
   }
 
-  function attach(formId){
-    var form = document.getElementById(formId);
-    if (!form) return;
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      relaySubmit(form);
-    });
-  }
+  var WATCHED_FORM_IDS = ['optin', 'popup-optin'];
 
-  function init(){
-    attach('optin');        // hero form, section-2-hero.html
-    attach('popup-optin');  // popup form, either popup-exit-optin*.html
-  }
-
-  if (document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  // Delegated listener on document, not a direct listener on each form.
+  // The popup's form (#popup-optin) doesn't exist in the DOM until the
+  // popup actually opens, so looking it up once at page-load time (the
+  // old approach) silently found nothing and never attached anything —
+  // meaning the popup's submit fell through to the browser's default
+  // behavior (a POST back to the page's own URL, which the server
+  // rejects). Listening on document catches the submit regardless of
+  // when the form was inserted into the page.
+  document.addEventListener('submit', function(e){
+    if (WATCHED_FORM_IDS.indexOf(e.target.id) === -1) return;
+    e.preventDefault();
+    relaySubmit(e.target);
+  });
 })();
 </script>
