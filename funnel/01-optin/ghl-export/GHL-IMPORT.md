@@ -5,11 +5,18 @@ This folder is a repackaging of `../index.html` into the shape GHL's
 **Custom HTML** element per row. Copy and layout are unchanged from the
 approved design — this is packaging only.
 
-## 1. Paste the head code
+## 1. Paste the CSS
 
-Open this funnel step → **Settings → Tracking Code → Head**, and paste the
-entire contents of **`head-code.html`** (the Google Fonts links + the
-`<style>` block).
+GHL steps typically expose two different fields for this — use whichever
+one your funnel step actually has:
+
+- **Settings → Tracking Code → Head** (accepts full HTML): paste the
+  entire contents of **`head-code.html`** (Google Fonts `<link>` tags +
+  the `<style>` block, all in one).
+- **Settings → Custom CSS** (raw CSS only, no `<style>`/`<link>` tags):
+  paste **`custom-css.css`** instead. If your step *only* has this field
+  and no separate head/tracking field for the fonts, uncomment the
+  `@import` line at the top of `custom-css.css`.
 
 That CSS is scoped under a single `.fsp-page` wrapper class on purpose —
 every section fragment below opens with `<div class="fsp-page">` for exactly
