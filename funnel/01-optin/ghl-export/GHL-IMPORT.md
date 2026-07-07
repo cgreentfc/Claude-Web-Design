@@ -76,8 +76,10 @@ gives those published pages.
 Hero is running as a flat green gradient (no photo) and the carrier-logos
 row has been removed for this test campaign. Search `REPLACE` in any file
 here for what's left:
-1. **Agent headshot** (`section-3-trustbar.html`) — license number is
-   already filled in (FL Lic. #G097732).
+1. **Agent headshot URL** (`section-3-trustbar.html`) — upload
+   `../assets/agent-headshot.jpg` to GHL's media library and swap the
+   `src="REPLACE-WITH-GHL-HOSTED-HEADSHOT-URL"` placeholder for the hosted
+   URL it gives you. License number is already filled in (FL Lic. #G097732).
 2. **Privacy Policy / Terms of Use links** (`section-2-hero.html`,
    `section-5-footer.html`) — see step 5 above.
 

@@ -102,8 +102,7 @@
   .trustbar{background:var(--cream);border-bottom:1px solid #E5DCC8}
   .trustbar-inner{max-width:1120px;margin:0 auto;padding:26px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:20px 36px}
   .agent{display:flex;align-items:center;gap:14px}
-  .agent-photo{width:56px;height:56px;border-radius:50%;background:var(--green-900);color:var(--gold-500);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:20px;border:2px solid var(--gold-500);flex:none}
-  /* REPLACE: .agent-photo with real headshot <img>, keep 56px circle + gold ring */
+  .agent-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center 20%;border:2px solid var(--gold-500);flex:none}
   .agent-name{font-weight:700;font-size:15px}
   .agent-cred{font-size:13px;color:var(--ink-soft)}
 
@@ -209,7 +208,7 @@
   <div class="trustbar-inner">
     <div class="agent">
       <!-- REPLACE: real headshot -->
-      <div class="agent-photo" aria-hidden="true">CG</div>
+      <img class="agent-photo" src="assets/agent-headshot.jpg" alt="C. Green">
       <div>
         <div class="agent-name">C. Green</div>
         <div class="agent-cred">Licensed Life Insurance Agent &middot; FL Lic. #G097732</div>
