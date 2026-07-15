@@ -1,0 +1,123 @@
+<!-- ============================================================
+     THE FAMILY SHIELD PLAN — Pre-Booking Video Banner
+     ============================================================
+     WHERE THIS GOES: drop as a Custom HTML element in the row
+     DIRECTLY ABOVE your video element, so the banner leads the
+     eye straight down into the video (the arrow cue points at it).
+
+     Self-contained: own <style>, own copy of the design tokens,
+     own Google Fonts link — no dependency on the opt-in page's
+     head-code.html / custom-css.css.
+
+     SWAP THE COPY: the eyebrow / headline / sub currently show
+     Option A ("Don't book the call yet"). The other four approved
+     options are listed as comments right above the markup — paste
+     whichever you want into the three spots marked SWAP.
+     ============================================================ -->
+<style>
+  .fsp-vsl{
+    --green-950:#0B211A; --green-900:#0E2A22; --green-700:#1C4A3B;
+    --gold-500:#C9A227; --gold-400:#D9B23B;
+    --cream:#FAF6EE; --ink:#1A1A18;
+    --display:"Fraunces",Georgia,"Times New Roman",serif;
+    --body:"Libre Franklin",-apple-system,"Segoe UI",Arial,sans-serif;
+  }
+  .fsp-vsl .vsl-banner{
+    position:relative;overflow:hidden;
+    background:
+      radial-gradient(1100px 460px at 50% -10%, rgba(201,162,39,.16), transparent 62%),
+      linear-gradient(168deg, #123528 0%, var(--green-900) 46%, var(--green-950) 100%);
+    color:var(--cream);font-family:var(--body);
+    text-align:center;
+  }
+  .fsp-vsl .vsl-banner *{box-sizing:border-box}
+  .fsp-vsl .vsl-inner{max-width:820px;margin:0 auto;padding:54px 24px 30px}
+  .fsp-vsl .vsl-eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--green-950);background:var(--gold-500);
+    padding:6px 14px;border-radius:999px;margin:0 0 20px
+  }
+  .fsp-vsl .vsl-eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green-950)}
+  .fsp-vsl .vsl-headline{
+    font-family:var(--display);font-weight:600;
+    font-size:clamp(30px,4.4vw,52px);line-height:1.08;letter-spacing:-.01em;
+    text-wrap:balance;margin:0 0 18px
+  }
+  .fsp-vsl .vsl-headline em{font-style:italic;color:var(--gold-500)}
+  .fsp-vsl .vsl-sub{
+    font-size:clamp(16px,1.7vw,19px);line-height:1.6;
+    color:rgba(250,246,238,.85);max-width:60ch;margin:0 auto 26px
+  }
+  .fsp-vsl .vsl-sub strong{color:var(--cream)}
+  .fsp-vsl .vsl-cue{display:flex;flex-direction:column;align-items:center;gap:14px}
+  .fsp-vsl .vsl-chip{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:rgba(250,246,238,.8);border:1.5px solid rgba(201,162,39,.5);
+    border-radius:999px;padding:8px 16px
+  }
+  .fsp-vsl .vsl-chip .dot{width:0;height:0;border-left:9px solid var(--gold-500);border-top:6px solid transparent;border-bottom:6px solid transparent}
+  .fsp-vsl .vsl-arrow{
+    font-size:26px;line-height:1;color:var(--gold-500);
+    animation:fspBounce 1.8s ease-in-out infinite
+  }
+  @keyframes fspBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+  @media (prefers-reduced-motion:reduce){.fsp-vsl .vsl-arrow{animation:none}}
+  @media (max-width:600px){.fsp-vsl .vsl-inner{padding:40px 20px 24px}}
+</style>
+
+<!-- ============================================================
+     APPROVED COPY OPTIONS (paste into the SWAP spots below):
+
+     A (in use) — Don't book yet / incongruity + being right
+       eyebrow: Watch this first
+       headline: Don&rsquo;t book the call <em>yet.</em>
+       sub: Give the next 10 minutes a chance first. They&rsquo;ll show you
+            your real number &mdash; so if you do book, you walk in already
+            knowing what you&rsquo;re there for.
+
+     B — Nobody explained this / scapegoat + being understood
+       eyebrow: Before you book
+       headline: Nobody ever actually sat you down and explained this.
+       sub: Not the HR packet. Not the man who sold your family a burial
+            policy. Ten straight minutes &mdash; then decide if the call is
+            worth your time.
+
+     C — See the house paid off / Home Movie + hope
+       eyebrow: Press play
+       headline: See the house paid off &mdash; <em>no matter what happens to you.</em>
+       sub: Ten minutes on exactly how a father earning $60K+ keeps his
+            family in their home. After that, the call is just paperwork.
+
+     D — You already suspect it / being right + ventriloquism
+       eyebrow: Watch this first
+       headline: You already suspect the work policy <em>isn&rsquo;t enough.</em>
+       sub: Ten minutes, no pitch &mdash; just the real math on what your
+            family would need, and why coverage from a job was never built
+            to carry them. Then book.
+
+     E — Can't un-see it / irreversibility + curiosity
+       eyebrow: The 10-minute breakdown
+       headline: The number you <em>can&rsquo;t un-see</em> once you&rsquo;ve seen it.
+       sub: Watch what your family would actually keep the house on. Then
+            book the call to lock yours in &mdash; while today&rsquo;s price is
+            still today&rsquo;s price.
+     ============================================================ -->
+
+<div class="fsp-vsl">
+  <section class="vsl-banner">
+    <div class="vsl-inner">
+      <!-- SWAP 1: eyebrow -->
+      <p class="vsl-eyebrow">Watch this first</p>
+      <!-- SWAP 2: headline (keep the <em>…</em> around the words you want in gold italic) -->
+      <h2 class="vsl-headline">Don&rsquo;t book the call <em>yet.</em></h2>
+      <!-- SWAP 3: sub -->
+      <p class="vsl-sub">Give the next 10 minutes a chance first. They&rsquo;ll show you your <strong>real number</strong> &mdash; so if you do book, you walk in already knowing what you&rsquo;re there for.</p>
+      <div class="vsl-cue">
+        <span class="vsl-chip"><span class="dot"></span>10-minute breakdown &middot; no pitch</span>
+        <span class="vsl-arrow" aria-hidden="true">&darr;</span>
+      </div>
+    </div>
+  </section>
+</div>
