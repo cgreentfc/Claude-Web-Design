@@ -25,7 +25,19 @@
     </div>
 
     <p class="belief-close">&ldquo;Your family already has a plan if you disappear tomorrow. You just haven&rsquo;t seen it in writing. Ten minutes shows you exactly what it says &mdash; and exactly what to fix.&rdquo;</p>
-    <a class="btn-secondary" href="#optin">Show Me My Real Number</a>
+    <!-- REPLACE 'button-yFqXjtEn87_btn' below if that native trigger button's
+         id ever changes (e.g. if you delete and recreate it) — GHL doesn't
+         expose an onclick/href for popup-trigger buttons, so we click the
+         real native button programmatically instead. Keep that native
+         button on the page (hidden via CSS, see the <style> block below);
+         don't delete it, or this link falls back to scrolling to #optin. -->
+    <a class="btn-secondary" href="#optin" onclick="var b=document.getElementById('button-yFqXjtEn87_btn'); if(b){ event.preventDefault(); b.click(); }">Show Me My Real Number</a>
   </div>
 </section>
+<style>
+  /* Hides the native GHL button that actually opens the popup — see the
+     onclick comment above. display:none is safe here (unlike hidden forms
+     elsewhere on this page) since there's no field validation involved. */
+  #button-yFqXjtEn87_btn{ display:none !important; }
+</style>
 </div>
